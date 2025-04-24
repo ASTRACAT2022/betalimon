@@ -17,7 +17,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ru">
       <head>
         <link rel="icon" href="/cloud.ico" type="image/x-icon" />
-        {/* Подключаем вашу Яндекс.Метрику */}
         <Script
           id="yandex-metrika"
           strategy="afterInteractive"
