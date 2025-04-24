@@ -21,10 +21,10 @@ export default function Home() {
         <AlertDescription>
           Создал бота для генерации конфигов, если сайт вдруг перестанет работать:{" "}
           <a
-            href="https://t.me/astracatwarp_bot"
+            href="https://t.me/NewAstracatWarpBot"
             className="font-medium text-blue-400 hover:underline"
           >
-            Astracat Warp Bot
+            New Astracat Warp Bot
           </a>
         </AlertDescription>
       </Alert>
@@ -40,19 +40,13 @@ export default function Home() {
             asChild
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-200"
           >
-            <a href="https://t.me/astracatwarp_bot">Astracat Warp Bot</a>
+            <a href="https://t.me/NewAstracatWarpBot">New Astracat Warp Bot</a>
           </Button>
           <Button
             asChild
             className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-all duration-200"
           >
             <a href="https://t.me/AstracatUI">AstracatUI Telegram</a>
-          </Button>
-          <Button
-            asChild
-            className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-all duration-200"
-          >
-            <a href="https://t.me/vuchaev2015">ASTRACAT Bot</a>
           </Button>
           <Button
             asChild
