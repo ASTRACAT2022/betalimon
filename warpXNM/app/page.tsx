@@ -7,7 +7,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gray-900 text-white">
       {/* Заголовок вместо логотипа */}
       <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
-        WARP Config Generator
+        ASTRACAT WARP V2
       </h1>
 
       {/* Alert (оставлен скрытым, но стилизован) */}
@@ -21,10 +21,10 @@ export default function Home() {
         <AlertDescription>
           Создал бота для генерации конфигов, если сайт вдруг перестанет работать:{" "}
           <a
-            href="https://t.me/warp_generator_bot"
+            href="https://t.me/astracatwarp_bot"
             className="font-medium text-blue-400 hover:underline"
           >
-            Warp Generator Bot
+            Astracat Warp Bot
           </a>
         </AlertDescription>
       </Alert>
@@ -40,33 +40,31 @@ export default function Home() {
             asChild
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-200"
           >
-            <a href="https://t.me/warp_generator_bot">Warp Generator Bot</a>
+            <a href="https://t.me/astracatwarp_bot">Astracat Warp Bot</a>
           </Button>
           <Button
             asChild
             className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-all duration-200"
           >
-            <a href="https://t.me/findllimonix">Telegram канал</a>
+            <a href="https://t.me/AstracatUI">AstracatUI Telegram</a>
           </Button>
           <Button
             asChild
             className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-all duration-200"
           >
-            <a href="https://t.me/vuchaev2015">ToporWarp Telegram</a>
+            <a href="https://t.me/vuchaev2015">ASTRACAT Bot</a>
           </Button>
           <Button
             asChild
             className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-all duration-200"
           >
-            <a href="https://github.com/nellimonix/warp-config-generator-vercel">
-              GitHub репозиторий
-            </a>
+            <a href="https://astracat.vercel.app">Наш Сайт</a>
           </Button>
         </div>
 
         {/* Поддержка */}
         <p className="text-sm text-gray-400 text-center">
-          Пожалуйста, поддержите проект на GitHub, поставив звезду.
+          Работает на базе llimonix.
         </p>
       </div>
     </main>
