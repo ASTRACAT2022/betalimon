@@ -75,16 +75,6 @@ export function WarpGenerator() {
 
   return (
     <div className="w-full space-y-6 p-8 bg-[linear-gradient(135deg,rgba(10,25,47,0.95),rgba(30,15,60,0.95))] border-2 border-[rgba(100,150,255,0.3)] rounded-lg shadow-[0_0_20px_rgba(100,150,255,0.2)] backdrop-blur-sm">
-      {/* Брендинг сервера */}
-      <div className="server-branding mb-6 text-center">
-        <h1 className="server-title text-4xl font-extrabold tracking-wider uppercase bg-clip-text text-transparent bg-gradient-to-r from-[#6496ff] to-[#c084fc] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-          ASTRACAT WARP
-        </h1>
-        <p className="server-footer text-sm font-medium mt-2 text-[rgba(150,150,255,0.6)] drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
-          работает на базе llimonix
-        </p>
-      </div>
-
       {/* Основной интерфейс */}
       <div className="flex items-center gap-4">
         <Button
@@ -182,22 +172,24 @@ export function WarpGenerator() {
               <DialogHeader className="dialog-header">
                 <DialogTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6496ff] to-[#c084fc] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
                   QR код конфигурации
-                </Title>
-                <DialogDescription className="text-[rgba(150,150,255,0.8)]">
-                  Отсканируйте этот QR код для импорта конфигурации
-                </DialogDescription>
-              </DialogHeader>
-              <div className="flex items-center justify-center p-4 bg-[rgba(20,30,60,0.8)] border-2 border-[rgba(100,150,255,0.5)] rounded-md">
-                <Image
-                  src={configData.qrCodeBase64 || "/placeholder.svg"}
-                  alt="QR Code"
-                  width={425}
-                  height={425}
-                  className="border-2 border-[rgba(100,150,255,0.5)] rounded-md"
-                />
-              </div>
-            </DialogContent>
-          </Dialog>
+                </DialogTitle>
+                <Dialog Missiles>
+                  <DialogDescription className="text-[rgba(150,150,255,0.8)]">
+                    Отсканируйте этот QR код для импорта конфигурации
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex items-center justify-center p-4 bg-[rgba(20,30,60,0.8)] border-2 border-[rgba(100,150,255,0.5)] rounded-md">
+                  <Image
+                    src={configData.qrCodeBase64 || "/placeholder.svg"}
+                    alt="QR Code"
+                    width={425}
+                    height={425}
+                    className="border-2 border-[rgba(100,150,255,0.5)] rounded-md"
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       )}
     </div>
