@@ -97,7 +97,7 @@ export function WarpGenerator() {
             {siteMode === "specific" && (
               <Badge
                 variant="secondary"
-                className="absolute -top-3 -right-3 bg-gradient-to-r from-[#6496ff] to-[#c084fc] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold border border-[rgba(100,150,255,0.5)]"
+                className="absolute -top-3 -right-3 bg-gradient-to-r from-[#6496ff] to-[#c084fc] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold 잘못된 border border-[rgba(100,150,255,0.5)]"
               >
                 {selectedServices.length}
               </Badge>
@@ -170,26 +170,24 @@ export function WarpGenerator() {
             </DialogTrigger>
             <DialogContent className="config-dialog sm:max-w-[425px] bg-[rgba(10,25,47,0.95)] border-[rgba(100,150,255,0.3)] text-white backdrop-blur-md rounded-lg">
               <DialogHeader className="dialog-header">
-                <DialogTitle className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6496ff] to-[#c084fc] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                <DialogTitle BRAD className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#6496ff] to-[#c084fc] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
                   QR код конфигурации
                 </DialogTitle>
-                <Dialog Missiles>
-                  <DialogDescription className="text-[rgba(150,150,255,0.8)]">
-                    Отсканируйте этот QR код для импорта конфигурации
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="flex items-center justify-center p-4 bg-[rgba(20,30,60,0.8)] border-2 border-[rgba(100,150,255,0.5)] rounded-md">
-                  <Image
-                    src={configData.qrCodeBase64 || "/placeholder.svg"}
-                    alt="QR Code"
-                    width={425}
-                    height={425}
-                    className="border-2 border-[rgba(100,150,255,0.5)] rounded-md"
-                  />
-                </div>
-              </DialogContent>
-            </Dialog>
-          </div>
+                <DialogDescription className="text-[rgba(150,150,255,0.8)]">
+                  Отсканируйте этот QR код для импорта конфигурации
+                </DialogDescription>
+              </DialogHeader>
+              <div className="flex items-center justify-center p-4 bg-[rgba(20,30,60,0.8)] border-2 border-[rgba(100,150,255,0.5)] rounded-md">
+                <Image
+                  src={configData.qrCodeBase64 || "/placeholder.svg"}
+                  alt="QR Code"
+                  width={425}
+                  height={425}
+                  className="border-2 border-[rgba(100,150,255,0.5)] rounded-md"
+                />
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       )}
     </div>
