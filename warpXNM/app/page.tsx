@@ -24,7 +24,7 @@ export default function Home() {
             href="https://t.me/NewAstracatWarpBot"
             className="font-medium text-blue-400 hover:underline"
           >
-            New Astracat Warp Bot
+            Бот ASTRACAT WARP
           </a>
         </AlertDescription>
       </Alert>
