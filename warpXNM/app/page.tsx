@@ -21,7 +21,7 @@ export default function Home() {
         <AlertDescription>
           Создал бота для генерации конфигов, если сайт вдруг перестанет работать:{" "}
           <a
-            href="https://t.me/NewAstracatWarpBot"
+            href="https://t.me/astracatwarp_bot"
             className="font-medium text-blue-400 hover:underline"
           >
             Бот ASTRACAT WARP
@@ -40,7 +40,7 @@ export default function Home() {
             asChild
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-200"
           >
-            <a href="https://t.me/NewAstracatWarpBot">New Astracat Warp Bot</a>
+            <a href="https://t.me/astracatwarp_bot">AstracatWarp Bot</a>
           </Button>
           <Button
             asChild
