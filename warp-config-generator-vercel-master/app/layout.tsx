@@ -8,8 +8,8 @@ import Script from "next/script"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Генерация конфигурации WARP",
-  description: "Генератор конфигураций для WARP"
+  title: "ASTRACAT WARP",
+  description: "Работает на базе llimonix"
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
