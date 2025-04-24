@@ -1,40 +1,74 @@
-import Image from "next/image"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Button } from "@/components/ui/button"
-import { WarpGenerator } from "@/components/warp-generator"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { WarpGenerator } from "@/components/warp-generator";
 
 export default function Home() {
   return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-4 w-full">
-        <Alert className="alert mb-6 break-words" style={{display: "none"}}>
-          <AlertTitle>Telegram Bot для генерации конфигов WARP</AlertTitle>
-          <AlertDescription className="break-words">
-            Создал бота для генерации конфигов, если сайт вдруг перестанет работать:{" "}
-            <a href="https://t.me/warp_generator_bot" className="font-medium">
-              Warp Generator Bot
-            </a>
-          </AlertDescription>
-        </Alert>
-        <div className="flex flex-col items-center justify-center gap-6 w-[300px]">
-          <Image src="/logo.svg" alt="Логотип" width={300} height={300}/>
-          <WarpGenerator/>
-          <Button asChild className="w-full">
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gray-900 text-white">
+      {/* Заголовок вместо логотипа */}
+      <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
+        WARP Config Generator
+      </h1>
+
+      {/* Alert (оставлен скрытым, но стилизован) */}
+      <Alert
+        className="mb-6 w-full max-w-md border-gray-700 bg-gray-800 text-white"
+        style={{ display: "none" }}
+      >
+        <AlertTitle className="text-lg font-semibold">
+          Telegram Bot для генерации конфигов WARP
+        </AlertTitle>
+        <AlertDescription>
+          Создал бота для генерации конфигов, если сайт вдруг перестанет работать:{" "}
+          <a
+            href="https://t.me/warp_generator_bot"
+            className="font-medium text-blue-400 hover:underline"
+          >
+            Warp Generator Bot
+          </a>
+        </AlertDescription>
+      </Alert>
+
+      {/* Основной контент */}
+      <div className="flex flex-col items-center justify-center gap-6 w-full max-w-md">
+        {/* Компонент генератора */}
+        <WarpGenerator />
+
+        {/* Кнопки */}
+        <div className="grid grid-cols-1 gap-4 w-full">
+          <Button
+            asChild
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-200"
+          >
             <a href="https://t.me/warp_generator_bot">Warp Generator Bot</a>
           </Button>
-          <Button asChild className="w-full">
+          <Button
+            asChild
+            className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-all duration-200"
+          >
             <a href="https://t.me/findllimonix">Telegram канал</a>
           </Button>
-          <Button asChild className="w-full">
+          <Button
+            asChild
+            className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-all duration-200"
+          >
             <a href="https://t.me/vuchaev2015">ToporWarp Telegram</a>
           </Button>
-          <Button asChild className="w-full">
-            <a href="https://github.com/nellimonix/warp-config-generator-vercel">GitHub репозиторий</a>
+          <Button
+            asChild
+            className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-all duration-200"
+          >
+            <a href="https://github.com/nellimonix/warp-config-generator-vercel">
+              GitHub репозиторий
+            </a>
           </Button>
-          <p className="text-sm text-muted-foreground">
-            Пожалуйста, поддержите меня на GitHub, поставив звезду.
-          </p>
         </div>
-      </main>
-  )
-}
 
+        {/* Поддержка */}
+        <p className="text-sm text-gray-400 text-center">
+          Пожалуйста, поддержите проект на GitHub, поставив звезду.
+        </p>
+      </div>
+    </main>
+  );
+}
