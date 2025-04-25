@@ -50,6 +50,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             />
           </div>
         </noscript>
+        {/* Подключаем Vercel Analytics */}
+        <Script
+          id="vercel-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              import { inject } from "@vercel/analytics";
+              if (process.env.NODE_ENV === "production") {
+                inject();
+              }
+            `,
+          }}
+        />
       </head>
       <body className={inter.className}>
         <ThemeProvider
