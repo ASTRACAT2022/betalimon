@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -10,11 +10,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Settings, RefreshCw, X } from "lucide-react"
+import { Settings, RefreshCw } from "lucide-react"
 import Image from "next/image"
 import { ym } from "@/utils/ym"
 import { ConfigOptions } from "./config-options"
 import { Badge } from "@/components/ui/badge"
+
+interface DnsServer {
+  name: string
+  value: string
+}
 
 export function WarpGenerator() {
   const [status, setStatus] = useState("")
@@ -25,6 +30,20 @@ export function WarpGenerator() {
   const [deviceType, setDeviceType] = useState<"computer" | "phone">("computer")
   const [isGenerated, setIsGenerated] = useState(false)
   const [isConfigOpen, setIsConfigOpen] = useState(false)
+  const [dnsServers, setDnsServers] = useState<DnsServer[]>([])
+  const [selectedDns, setSelectedDns] = useState<string>("")
+  const [useAwg, setUseAwg] = useState(false)
+
+  useEffect(() => {
+    fetch("/api/settings")
+      .then((res) => res.json())
+      .then((data) => {
+        setDnsServers(data.dnsServers)
+        if (data.dnsServers.length > 0) {
+          setSelectedDns(data.dnsServers[0].value)
+        }
+      })
+  }, [])
 
   const generateConfig = async () => {
     setIsLoading(true)
@@ -39,6 +58,8 @@ export function WarpGenerator() {
           selectedServices: siteMode === "specific" && selectedServices.length === 0 ? ["all"] : selectedServices,
           siteMode: siteMode === "specific" && selectedServices.length === 0 ? "all" : siteMode,
           deviceType,
+          dns: selectedDns,
+          useAwg,
         }),
       })
       const data = await response.json()
@@ -112,6 +133,11 @@ export function WarpGenerator() {
                   onSiteModeChange={setSiteMode}
                   deviceType={deviceType}
                   onDeviceTypeChange={setDeviceType}
+                  dnsServers={dnsServers}
+                  selectedDns={selectedDns}
+                  onDnsChange={setSelectedDns}
+                  useAwg={useAwg}
+                  onAwgChange={setUseAwg}
                 />
               </DialogContent>
             </Dialog>
@@ -150,4 +176,3 @@ export function WarpGenerator() {
     </div>
   )
 }
-
