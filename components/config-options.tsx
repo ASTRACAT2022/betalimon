@@ -1,5 +1,7 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
 
 const services = [
   { name: "Discord", key: "discord" },
@@ -27,6 +29,11 @@ const services = [
   { name: "BestChange", key: "bestchange" },
 ]
 
+interface DnsServer {
+  name: string
+  value: string
+}
+
 interface ConfigOptionsProps {
   selectedServices: string[]
   onServiceToggle: (service: string) => void
@@ -34,6 +41,11 @@ interface ConfigOptionsProps {
   onSiteModeChange: (mode: "all" | "specific") => void
   deviceType: "computer" | "phone"
   onDeviceTypeChange: (type: "computer" | "phone") => void
+  dnsServers: DnsServer[]
+  selectedDns: string
+  onDnsChange: (dns: string) => void
+  useAwg: boolean
+  onAwgChange: (useAwg: boolean) => void
 }
 
 export function ConfigOptions({
@@ -43,10 +55,20 @@ export function ConfigOptions({
   onSiteModeChange,
   deviceType,
   onDeviceTypeChange,
+  dnsServers,
+  selectedDns,
+  onDnsChange,
+  useAwg,
+  onAwgChange,
 }: ConfigOptionsProps) {
   return (
     <div className="space-y-4">
       <div className="flex flex-col gap-4">
+        <div className="flex items-center space-x-2">
+          <Switch id="awg-mode" checked={useAwg} onCheckedChange={onAwgChange} />
+          <Label htmlFor="awg-mode">Amnesia WG 1.5</Label>
+        </div>
+
         <Select value={siteMode} onValueChange={onSiteModeChange}>
           <SelectTrigger>
             <SelectValue placeholder="Выберите режим" />
@@ -81,8 +103,20 @@ export function ConfigOptions({
             <SelectItem value="phone">Телефон</SelectItem>
           </SelectContent>
         </Select>
+
+        <Select value={selectedDns} onValueChange={onDnsChange}>
+          <SelectTrigger>
+            <SelectValue placeholder="Выберите DNS" />
+          </SelectTrigger>
+          <SelectContent>
+            {dnsServers.map((dns) => (
+              <SelectItem key={dns.name} value={dns.value}>
+                {dns.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </div>
   )
 }
-
