@@ -1,6 +1,7 @@
-import nacl from "tweetnacl"
+import nacl from "tweetnac'
 import { Buffer } from "buffer"
 import QRCode from "qrcode"
+import { kv } from "@vercel/kv"
 
 // Import IP ranges
 import {
@@ -64,6 +65,8 @@ async function generateWarpConfig(
   selectedServices: string[],
   siteMode: "all" | "specific",
   deviceType: "computer" | "phone",
+  dns: string,
+  useAwg: boolean,
 ) {
   const { privKey, pubKey } = generateKeys()
 
@@ -125,20 +128,23 @@ async function generateWarpConfig(
 
   const allowed_ips = siteMode === "all" ? "0.0.0.0/0, ::/0" : Array.from(allowed_ips_set).join(", ")
 
-  const platform_params = deviceType === "computer" ? "Jc = 4\nJmin = 40\nJmax = 70" : "Jc = 120\nJmin = 23\nJmax = 911"
+  let awgParams = ""
+  if (useAwg) {
+    const settings = await kv.get("settings")
+    if (settings) {
+      const { s1, s2, jc, jmin, jmax, h1, h2, h3, h4 } = (settings as any).awgSettings
+      awgParams = `S1 = ${s1}\nS2 = ${s2}\nJc = ${jc}\nJmin = ${jmin}\nJmax = ${jmax}\nH1 = ${h1}\nH2 = ${h2}\nH3 = ${h3}\nH4 = ${h4}\nI1 =`
+    }
+  } else {
+    awgParams = deviceType === "computer" ? "Jc = 4\nJmin = 40\nJmax = 70" : "Jc = 120\nJmin = 23\nJmax = 911"
+  }
 
   const conf = `[Interface]
 PrivateKey = ${privKey}
-S1 = 0
-S2 = 0
-${platform_params}
-H1 = 1
-H2 = 2
-H3 = 3
-H4 = 4
+${awgParams}
 MTU = 1280
 Address = ${client_ipv4}, ${client_ipv6}
-DNS = 1.1.1.1, 2606:4700:4700::1111, 1.0.0.1, 2606:4700:4700::1001
+DNS = ${dns}
 
 [Peer]
 PublicKey = ${peer_pub}
@@ -161,9 +167,11 @@ export async function getWarpConfigLink(
   selectedServices: string[],
   siteMode: "all" | "specific",
   deviceType: "computer" | "phone",
+  dns: string,
+  useAwg: boolean,
 ) {
   try {
-    const conf = await generateWarpConfig(selectedServices, siteMode, deviceType)
+    const conf = await generateWarpConfig(selectedServices, siteMode, deviceType, dns, useAwg)
     const confBase64 = Buffer.from(conf).toString("base64")
     const confWithoutMtu = removeMtuLine(conf)
     const qrCodeBase64 = await generateQrCode(confWithoutMtu)
@@ -176,4 +184,3 @@ export async function getWarpConfigLink(
     return null
   }
 }
-
